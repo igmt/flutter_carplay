@@ -37,11 +37,6 @@ public class SwiftFlutterCarplayPlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    // Ask user to open app
-    rootTemplate = FCPInformationTemplate(obj: ["_elementId": "-1", "layout": "leading", "title": "Doorcy", "informationItems": [["_elementId": "-2", "title": "Zorg dat de Doorcy app op de achtergrond open staat.", "detail": nil]], "actions": []])
-    SwiftFlutterCarplayPlugin.rootTemplate = (rootTemplate as! FCPInformationTemplate).get
-    FlutterCarPlaySceneDelegate.forceUpdateRootTemplate()
-    
     switch call.method {
     case FCPChannelTypes.setRootTemplate:
       guard let args = call.arguments as? [String : Any] else {
@@ -212,6 +207,10 @@ public class SwiftFlutterCarplayPlugin: NSObject, FlutterPlugin {
       result(true)
       break
     default:
+      // Ask user to open app
+      rootTemplate = FCPInformationTemplate(obj: ["_elementId": "-1", "layout": "leading", "title": "Doorcy", "informationItems": [["_elementId": "-2", "title": "Zorg dat de Doorcy app op de achtergrond open staat.", "detail": nil]], "actions": []])
+      SwiftFlutterCarplayPlugin.rootTemplate = (rootTemplate as! FCPInformationTemplate).get
+      FlutterCarPlaySceneDelegate.forceUpdateRootTemplate()
       result(false)
       break
     }
