@@ -207,6 +207,9 @@ public class SwiftFlutterCarplayPlugin: NSObject, FlutterPlugin {
       result(true)
       break
     default:
+      // Ask user to open app
+      rootTemplate = FCPInformationTemplate(obj: ["_elementId": "-1", "layout": "leading", "title": "Doorcy", "informationItems": [["_elementId": "-2", "title": "", "detail": nil]], "actions": []])
+      SwiftFlutterCarplayPlugin.rootTemplate = (rootTemplate as! FCPInformationTemplate).get
       result(false)
       break
     }
